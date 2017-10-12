@@ -29,8 +29,8 @@
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "react-redux": "*",
+    "redux": "*"
   },
   "scripts": {
     "build": "brunch build",
