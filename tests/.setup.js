@@ -6,6 +6,7 @@
 const path = require('path');
 const babelRegister = require('babel-register');
 const babelResolver = require('babel-resolver');
+
 const app = path.join(__dirname, '..', 'app');
 const resolveModuleSource = babelResolver(app);
 babelRegister({ resolveModuleSource });
@@ -15,8 +16,11 @@ babelRegister({ resolveModuleSource });
  * Enzyme stuff
  * http://airbnb.io/enzyme/docs/guides/jsdom.html
  */
-const { JSDOM } = require('jsdom');
+const Enzyme = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+Enzyme.configure({ adapter: new Adapter() });
 
+const { JSDOM } = require('jsdom');
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 
