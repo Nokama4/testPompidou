@@ -1,19 +1,31 @@
 /*
  * Npm import
  */
-import { createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 
 
 /*
- * Local
+ * Local import
  */
-import reducer from 'src/store/reducer';
+import reducer from './reducer';
+import example from './middleware-example';
 
 
 /*
  * Code
  */
-const store = createStore(reducer);
+// DevTools
+let devTools = [];
+if (window.devToolsExtension) {
+  devTools = [window.devToolsExtension()];
+}
+
+// Enhancers
+const exampleMiddleware = applyMiddleware(example);
+const enhancers = compose(exampleMiddleware, ...devTools);
+
+// Store
+const store = createStore(reducer, enhancers);
 
 
 /*
