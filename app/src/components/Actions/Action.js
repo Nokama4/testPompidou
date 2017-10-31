@@ -12,9 +12,9 @@ import React from 'react';
 /*
  * Code
  */
-const Nav = () => (
-  <div id="nav">
-    <div id="app-hello">Je suis une nav</div>
+const Action = ({ text }) => (
+  <div id="action">
+    <div id="action-text">{text}</div>
   </div>
 );
 
@@ -22,4 +22,4 @@ const Nav = () => (
 /*
  * Export default
  */
-export default Nav;
+export default Action;

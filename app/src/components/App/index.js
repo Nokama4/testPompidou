@@ -8,7 +8,7 @@ import React from 'react';
  * Local import
  */
 import Nav from 'src/components/Nav';
-import Game from 'src/components/Game';
+import Game from 'src/containers/Game';
 
 /*
  * Code

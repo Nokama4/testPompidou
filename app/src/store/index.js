@@ -8,7 +8,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
  * Local import
  */
 import reducer from './reducer';
-import example from './middleware-example';
+import ajax from './ajax';
 
 
 /*
@@ -21,8 +21,8 @@ if (window.devToolsExtension) {
 }
 
 // Enhancers
-const exampleMiddleware = applyMiddleware(example);
-const enhancers = compose(exampleMiddleware, ...devTools);
+const ajaxMiddleware = applyMiddleware(ajax);
+const enhancers = compose(ajaxMiddleware, ...devTools);
 
 // Store
 const store = createStore(reducer, enhancers);

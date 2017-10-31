@@ -2,9 +2,12 @@
 // Import
 const express = require('express');
 const bodyParser = require('body-parser');
+const datas = require('./datas');
 
 // server
 const app = express();
+
+// body parser middle
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -25,6 +28,19 @@ app.get('/', (req, res) => {
       </ul>
     </div>
   `);
+});
+
+const findScene = sceneID => (
+  datas.find(scene => (
+    scene.id === sceneID
+  ))
+);
+
+app.post('/datas', (req, res) => {
+  const { current } = req.body;
+  const scene = findScene(current);
+  console.log(scene);
+  res.json(scene);
 });
 
 // Start on :3000
