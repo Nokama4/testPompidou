@@ -7,16 +7,14 @@ import React from 'react';
 /*
  * Local import
  */
-import Nav from 'src/components/Nav';
-import Game from 'src/components/Game';
+
 
 /*
  * Code
  */
-const App = () => (
+const Nav = () => (
   <div id="app">
-    <Nav />
-    <Game />
+    <div id="app-hello">Hello World!</div>
   </div>
 );
 
@@ -24,4 +22,4 @@ const App = () => (
 /*
  * Export default
  */
-export default App;
+export default Nav;
