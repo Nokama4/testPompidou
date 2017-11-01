@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 /*
  * Local import
  */
-import Actions from 'src/components/Actions';
+import Desktop from 'src/components/Desktop';
 
 
 /*
@@ -15,7 +15,9 @@ import Actions from 'src/components/Actions';
  */
 // State
 const mapStateToProps = state => ({
-  actions: state.scenes.actions,
+  logged: state.user.logged,
+  factionChoice: state.user.logged,
+  chaConfig: state.user.logged,
 });
 
 // Actions
@@ -26,10 +28,10 @@ const mapDispatchToProps = {};
  * Component
  */
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
-const ActionsContainer = createContainer(Actions);
+const DesktopContainer = createContainer(Desktop);
 
 
 /*
  * Export default
  */
-export default ActionsContainer;
+export default DesktopContainer;

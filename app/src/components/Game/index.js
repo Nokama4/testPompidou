@@ -18,7 +18,6 @@ class Game extends React.Component {
   }
   render() {
     const { title, text, loaded } = this.props;
-    console.log(title);
     return (
       <div id="game">
         <div id="game-title">{title}</div>

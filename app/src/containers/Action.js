@@ -8,25 +8,20 @@ import { bindActionCreators } from 'redux';
 /*
  * Local import
  */
-import Game from 'src/components/Game';
-import { loadCurrentPage } from 'src/store/ducks/scenes';
+import Action from 'src/components/Actions/Action';
+import { loadNewPage } from 'src/store/ducks/scenes';
 
 
 /*
  * Code
  */
 // State
-const mapStateToProps = state => ({
-  text: state.scenes.text,
-  title: state.scenes.title,
-  actions: state.scenes.actions,
-  loaded: state.scenes.loaded,
-});
+const mapStateToProps = null;
 
 // Actions
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    loadCurrentPage,
+    loadNewPage,
   }, dispatch),
 });
 
@@ -35,10 +30,10 @@ const mapDispatchToProps = dispatch => ({
  * Component
  */
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
-const GameContainer = createContainer(Game);
+const ActionContainer = createContainer(Action);
 
 
 /*
  * Export default
  */
-export default GameContainer;
+export default ActionContainer;

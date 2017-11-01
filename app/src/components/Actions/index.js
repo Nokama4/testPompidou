@@ -12,20 +12,17 @@ import Action from './Action';
 /*
  * Code
  */
-const Actions = ({ actions }) => {
-  console.log(actions);
-  return (
-    <div id="actions">
-      {actions.map(action => (
-        <Action
-          key={action.id}
-          {...action}
-        />
+const Actions = ({ actions }) => (
+  <div id="actions">
+    {actions.map(action => (
+      <Action
+        key={action.text}
+        {...action}
+      />
       ))
     }
-    </div>
-  );
-};
+  </div>
+);
 
 
 /*

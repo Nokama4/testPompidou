@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const datas = require('./datas');
+const factions = require('./factions');
 
 // server
 const app = express();
@@ -41,6 +42,11 @@ app.post('/datas', (req, res) => {
   const scene = findScene(current);
   console.log(scene);
   res.json(scene);
+});
+
+app.get('/factions', (req, res) => {
+  console.log(factions);
+  res.json(factions);
 });
 
 // Start on :3000

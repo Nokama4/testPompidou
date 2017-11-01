@@ -7,7 +7,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 /*
  * Local import
  */
-import reducer from './reducer';
+import reducer from 'src/store/ducks';
 import ajax from './ajax';
 
 

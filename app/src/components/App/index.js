@@ -7,16 +7,14 @@ import React from 'react';
 /*
  * Local import
  */
-import Nav from 'src/components/Nav';
-import Game from 'src/containers/Game';
+import Desktop from 'src/containers/Desktop';
 
 /*
  * Code
  */
 const App = () => (
   <div id="app">
-    <Nav />
-    <Game />
+    <Desktop />
   </div>
 );
 

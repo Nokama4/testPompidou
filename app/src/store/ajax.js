@@ -6,13 +6,15 @@ import axios from 'axios';
 /*
  * Local import
  */
-import { PAGE_LOAD, receiveScene } from 'src/store/reducer';
+import { PAGE_LOAD, receiveScene, FACTIONS_LOAD, receiveFactions } from 'src/store/ducks/scenes';
 
 /*
  * Code
  */
 
-const url = 'http://localhost:3000/datas';
+const urlScene = 'http://localhost:3000/datas';
+const urlFactions = 'http://localhost:3000/factions';
+
 
 const createMiddleware = store => next => (action) => {
   // Je vérifie ce qui m'intéresse
@@ -20,9 +22,19 @@ const createMiddleware = store => next => (action) => {
     case PAGE_LOAD: {
       const state = store.getState();
       axios
-        .post(url, { current: state.currentPageID })
+        .post(urlScene, { current: state.scenes.currentPageID })
         .then(({ data }) => {
           store.dispatch(receiveScene(data));
+        });
+      break;
+    }
+
+    case FACTIONS_LOAD: {
+      axios
+        .get(urlFactions)
+        .then((response) => {
+          console.log(response);
+          store.dispatch(receiveFactions(response.data));
         });
       break;
     }
