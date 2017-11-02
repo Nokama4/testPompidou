@@ -22,7 +22,7 @@ const createMiddleware = store => next => (action) => {
     case PAGE_LOAD: {
       const state = store.getState();
       axios
-        .post(urlScene, { current: state.scenes.currentPageID })
+        .post(urlScene, { current: state.user.current })
         .then(({ data }) => {
           store.dispatch(receiveScene(data));
         });

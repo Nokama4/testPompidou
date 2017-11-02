@@ -17,14 +17,12 @@ class Game extends React.Component {
     this.props.actions.loadCurrentPage();
   }
   render() {
-    const { title, text, loaded } = this.props;
+    const { title, text } = this.props;
     return (
       <div id="game">
         <div id="game-title">{title}</div>
         <div id="game-text">{text}</div>
-        {loaded &&
-          <Actions />
-        }
+        <Actions />
       </div>
     );
   }

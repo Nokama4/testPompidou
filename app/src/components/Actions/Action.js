@@ -12,11 +12,26 @@ import React from 'react';
 /*
  * Code
  */
-const Action = ({ text }) => (
-  <div id="action">
-    <div id="action-text">{text}</div>
-  </div>
-);
+class Action extends React.Component {
+  handleClick = () => {
+    this.props.actions.selectAction(this.props.targetSuccess);
+    this.props.actions.loadCurrentPage();
+  }
+  render() {
+    const { text } = this.props;
+    console.log(this.props);
+    return (
+      <div id="action">
+        <button
+          id="action-text"
+          onClick={this.handleClick}
+        >
+          {text}
+        </button>
+      </div>
+    );
+  }
+}
 
 
 /*

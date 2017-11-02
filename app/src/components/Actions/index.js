@@ -7,7 +7,7 @@ import React from 'react';
 /*
  * Local import
  */
-import Action from './Action';
+import Action from 'src/containers/Action';
 
 /*
  * Code

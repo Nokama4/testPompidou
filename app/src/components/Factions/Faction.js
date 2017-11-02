@@ -12,18 +12,26 @@ import React from 'react';
 /*
  * Code
  */
-const Faction = ({ name, id }) => {
-  console.log(id);
-  return (
-    <div id="faction">
-      <button
-        className="faction"
-      >
-        {name}
-      </button>
-    </div>
-  );
-};
+class Faction extends React.Component {
+  handleClick = () => {
+    const { id } = this.props;
+    this.props.actions.selectFaction(id);
+  }
+
+  render() {
+    const { name } = this.props;
+    return (
+      <div id="faction">
+        <button
+          className="faction"
+          onClick={this.handleClick}
+        >
+          {name}
+        </button>
+      </div>
+    );
+  }
+}
 /*
  * Export default
  */

@@ -20,7 +20,6 @@ const mapStateToProps = state => ({
   text: state.scenes.text,
   title: state.scenes.title,
   actions: state.scenes.actions,
-  loaded: state.scenes.loaded,
 });
 
 // Actions

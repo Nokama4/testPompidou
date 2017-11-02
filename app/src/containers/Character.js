@@ -8,22 +8,24 @@ import { bindActionCreators } from 'redux';
 /*
  * Local import
  */
-import Action from 'src/components/Actions/Action';
-import { loadCurrentPage } from 'src/store/ducks/scenes';
-import { selectAction } from 'src/store/ducks/user';
-
+import Character from 'src/components/Character';
+import { nameTyping, changeGender, selectCharacter, beginGame } from 'src/store/ducks/user';
 
 /*
  * Code
  */
 // State
-const mapStateToProps = null;
+const mapStateToProps = state => ({
+  name: state.user.inputName,
+});
 
 // Actions
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    loadCurrentPage,
-    selectAction,
+    nameTyping,
+    changeGender,
+    selectCharacter,
+    beginGame,
   }, dispatch),
 });
 
@@ -32,10 +34,10 @@ const mapDispatchToProps = dispatch => ({
  * Component
  */
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
-const ActionContainer = createContainer(Action);
+const CharacterContainer = createContainer(Character);
 
 
 /*
  * Export default
  */
-export default ActionContainer;
+export default CharacterContainer;

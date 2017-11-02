@@ -11,9 +11,9 @@ export const FACTIONS_RECEIVE = 'FACTIONS_RECEIVE';
  * Initial state
  */
 const initialState = {
-  loaded: false,
   currentPageID: 1,
   factions: [],
+  actions: [],
 };
 
 
@@ -36,7 +36,6 @@ export default (state = initialState, action = {}) => {
         actions,
         text: action.data.description,
         title,
-        loaded: true,
       };
     }
 

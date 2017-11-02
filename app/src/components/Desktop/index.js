@@ -10,25 +10,25 @@ import React from 'react';
 import Nav from 'src/components/Nav';
 import Game from 'src/containers/Game';
 import Factions from 'src/containers/Factions';
-import Character from 'src/components/Character';
+import Character from 'src/containers/Character';
 
 /*
  * Code
  */
 /* eslint-disable object-curly-newline */
-const Desktop = ({ logged, factionChoice, chaConfig, loaded }) => (
+const Desktop = ({ status }) => (
   <div id="desktop">
     <Nav />
 
-    {logged &&
+    {status === 'faction' &&
     <Factions />
       }
 
-    {!factionChoice &&
+    {status === 'character' &&
     <Character />
       }
 
-    {!chaConfig &&
+    {status === 'game' &&
     <Game />
       }
   </div>

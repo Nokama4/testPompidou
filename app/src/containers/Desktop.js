@@ -15,9 +15,7 @@ import Desktop from 'src/components/Desktop';
  */
 // State
 const mapStateToProps = state => ({
-  logged: state.user.logged,
-  factionChoice: state.user.logged,
-  chaConfig: state.user.logged,
+  status: state.user.status,
 });
 
 // Actions
