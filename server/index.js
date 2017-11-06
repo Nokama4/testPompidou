@@ -4,19 +4,27 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const datas = require('./datas');
 const factions = require('./factions');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const router = require('./router');
+
 
 // server
 const app = express();
+mongoose.connect('mongodb://localhost:auth/auth');
 
-// body parser middle
+
+// MIDDLEWARES
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
+router(app);
 // get
+
 
 app.get('/', (req, res) => {
   res.send(`
@@ -31,6 +39,12 @@ app.get('/', (req, res) => {
   `);
 });
 
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('we are connected');
+});
+
 const findScene = sceneID => (
   datas.find(scene => (
     scene.id === sceneID
@@ -40,14 +54,15 @@ const findScene = sceneID => (
 app.post('/datas', (req, res) => {
   const { current } = req.body;
   const scene = findScene(current);
-  console.log(scene);
   res.json(scene);
 });
 
 app.get('/factions', (req, res) => {
-  console.log(factions);
   res.json(factions);
 });
 
 // Start on :3000
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port);
+
+console.log(`Server listening to ${port}`);

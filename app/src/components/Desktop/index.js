@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-
+import { Route } from 'react-router-dom';
 
 /*
  * Local import
@@ -11,6 +11,8 @@ import Nav from 'src/components/Nav';
 import Game from 'src/containers/Game';
 import Factions from 'src/containers/Factions';
 import Character from 'src/containers/Character';
+import Login from 'src/components/Login';
+import Register from 'src/containers/Register';
 
 /*
  * Code
@@ -19,7 +21,9 @@ import Character from 'src/containers/Character';
 const Desktop = ({ status }) => (
   <div id="desktop">
     <Nav />
-
+    <Route exact path="/" component={Factions} />
+    <Route exact path="/signin" component={Login} />
+    <Route exact path="/signup" component={Register} />
     {status === 'faction' &&
     <Factions />
       }

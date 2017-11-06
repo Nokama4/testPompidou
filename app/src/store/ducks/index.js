@@ -9,6 +9,7 @@ import { combineReducers } from 'redux';
  */
 import scenes from './scenes';
 import user from './user';
+import auth from './auth';
 
 
 /*
@@ -17,6 +18,7 @@ import user from './user';
 const reducer = combineReducers({
   scenes,
   user,
+  auth,
 });
 
 
