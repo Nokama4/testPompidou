@@ -11,16 +11,9 @@ const router = require('./router');
 
 // server
 const app = express();
-module.exports.connect = () => {
-  mongoose.connect('mongodb://localhost:auth/auth', { useMongoClient: true });
-  // plug in the promise library:
-  mongoose.Promise = global.Promise;
-  const db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', () => {
-  console.log('we are connected');
-  });
-};
+mongoose.connect('mongodb://localhost:auth/auth');
+mongoose.Promise = global.Promise;
+
 // MIDDLEWARES
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -44,6 +37,12 @@ app.get('/', (req, res) => {
       </ul>
     </div>
   `);
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('we are connected');
 });
 
 const findScene = sceneID => (
