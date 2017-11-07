@@ -6,7 +6,7 @@ export const PWD_TYPING = 'PWD_TYPING';
 export const PWDCONF_TYPING = 'PWDCONF_TYPING';
 export const PSEUDO_TYPING = 'PSEUDO_TYPING';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
-export const LOGIN_SUCCESS = 'LOGIN_SUCESS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 export const SIGNIN_SUBMIT = 'SIGNIN_SUBMIT';
@@ -80,7 +80,10 @@ export default (state = initialState, action = {}) => {
       };
     }
     case LOGIN_SUCCESS: {
+      console.log('action.user');
+      console.log(action.user);
       return {
+        ...state,
         isAuthenticating: false,
         currentUser: action.user,
         errorMessage: '',

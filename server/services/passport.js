@@ -61,28 +61,38 @@ const jwtOptions = {
 
 //  CREATING JWT Strategy------------------------------
 // (Decoded JWT Token) 'payload' - (see controllers/authentication.js)
-const jwtLogin = new JwtStrategy(jwtOptions, ((payload, done) => {
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
+
+const jwtLogin = new JwtStrategy(jwtOptions, (function (payload, done) {
   // See if user ID IN PAYLOAD exist in DB
   //  (+): call 'done' WITH a user object
   // (-): call 'done' WITHOUT a user object
+  //
+
+  console.log('payload');
+  console.log(payload);
   User.findById(payload.sub, (err, user) => {
     // if WITH ERROR (no - user object)
+    console.log('payload.sub');
+    console.log(payload.sub);
+
     if (err) {
       // 'unsuccessful' search process(err): return error object;
-      console.log('return error object');
+      console.log('err, false');
       return done(err, false);
       // err (returning error object)
       // false (user object if we did NOT found one)
     }
     // if WITHOUT ERROR (yes - user object)
     if (user) {
+      console.log('null, user');
       // 'successful' search process(null): return (user); no error object to return;
-      console.log('no error object to return');
       done(null, user);
     }
     else {
+      console.log('success');
       // 'successful' search process(null) - but user NOT found (false); no error object to return;
-      console.log('user NOT found');
       done(null, false);
     }
   });

@@ -9,6 +9,7 @@ module.exports = (app) => {
   // Setting Route Handler to handle .GET request to root ('/')
   // Any incoming request must pass through requireAuth to continue
   app.get('/', requireAuth, (req, res) => {
+    console.log('Passes tu par là?');
     res.send({ User: 'Successfully Authenticated for Root Route' });
   });
 

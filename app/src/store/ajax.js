@@ -17,8 +17,7 @@ const urlScene = 'http://localhost:3000/datas';
 const urlFactions = 'http://localhost:3000/factions';
 const urlSignUp = 'http://localhost:3000/signup';
 const urlSignIn = 'http://127.0.0.1:3000/signin';
-const url = 'http://127.0.0.1:3000/';
-
+const url = 'http://localhost:3000/';
 
 
 const createMiddleware = store => next => (action) => {
@@ -72,32 +71,25 @@ const createMiddleware = store => next => (action) => {
           localStorage.setItem('mytoken', response.data.token);
           const userdecode = jwtDecode(response.data.token);
           store.dispatch(loginSuccess(userdecode));
-          console.log(localStorage);
-          console.log(response);
-          console.log(userdecode);
         })
         .catch((res) => {
-          console.log(res.data);
+          console.log(res);
         });
       break;
     }
     case LOGIN_SUCCESS: {
       const state = store.getState();
-      axios
-        .get(urlSignIn, {
-          email: state.auth.inputEmail,
-          password: state.auth.inputPwd,
-        })
+      console.log(localStorage.getItem('mytoken'));
+      axios({
+        method: 'GET',
+        url,
+        headers: { authorization: `jwt ${localStorage.getItem('mytoken')}` },
+      })
         .then((response) => {
-          localStorage.setItem('mytoken', response.data.token);
-          const userdecode = jwtDecode(response.data.token);
-          store.dispatch(loginSuccess(userdecode));
-          console.log(localStorage);
-          console.log(response);
-          console.log(userdecode);
+          console.log(response.data);
         })
         .catch((res) => {
-          console.log(res.data);
+          console.log(res);
         });
       break;
     }

@@ -17,12 +17,10 @@ exports.signin = (req, res, next) => { /*
   Since User is now registered
   - (email and password authenticated with unique JWT Token received)
   - We just need to give them a token */
-  console.log(req);
   res.send({ token: tokenUser(req.user) });
 };
 
 exports.signup = (req, res, next) => {
-  console.log(req.body);
   const { email } = req.body;
   const { password } = req.body;
 
