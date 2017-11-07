@@ -2,12 +2,13 @@
  * Npm import
  */
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 /*
  * Local import
  */
 import { PAGE_LOAD, receiveScene, FACTIONS_LOAD, receiveFactions } from 'src/store/ducks/scenes';
-import { SIGNUP_SUBMIT, SIGNIN_SUBMIT } from 'src/store/ducks/auth';
+import { SIGNUP_SUBMIT, SIGNIN_SUBMIT, LOGOUT, LOGIN_FAILURE, LOGIN_SUCCESS, loginSuccess, loginFailure, logout } from 'src/store/ducks/auth';
 /*
  * Code
  */
@@ -16,6 +17,8 @@ const urlScene = 'http://localhost:3000/datas';
 const urlFactions = 'http://localhost:3000/factions';
 const urlSignUp = 'http://localhost:3000/signup';
 const urlSignIn = 'http://127.0.0.1:3000/signin';
+const url = 'http://127.0.0.1:3000/';
+
 
 
 const createMiddleware = store => next => (action) => {
@@ -67,8 +70,34 @@ const createMiddleware = store => next => (action) => {
         })
         .then((response) => {
           localStorage.setItem('mytoken', response.data.token);
+          const userdecode = jwtDecode(response.data.token);
+          store.dispatch(loginSuccess(userdecode));
           console.log(localStorage);
           console.log(response);
+          console.log(userdecode);
+        })
+        .catch((res) => {
+          console.log(res.data);
+        });
+      break;
+    }
+    case LOGIN_SUCCESS: {
+      const state = store.getState();
+      axios
+        .get(urlSignIn, {
+          email: state.auth.inputEmail,
+          password: state.auth.inputPwd,
+        })
+        .then((response) => {
+          localStorage.setItem('mytoken', response.data.token);
+          const userdecode = jwtDecode(response.data.token);
+          store.dispatch(loginSuccess(userdecode));
+          console.log(localStorage);
+          console.log(response);
+          console.log(userdecode);
+        })
+        .catch((res) => {
+          console.log(res.data);
         });
       break;
     }

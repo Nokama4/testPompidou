@@ -6,7 +6,11 @@ export const PWD_TYPING = 'PWD_TYPING';
 export const PWDCONF_TYPING = 'PWDCONF_TYPING';
 export const PSEUDO_TYPING = 'PSEUDO_TYPING';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+export const LOGIN_SUCCESS = 'LOGIN_SUCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT = 'LOGOUT';
 export const SIGNIN_SUBMIT = 'SIGNIN_SUBMIT';
+
 
 /*
  * Initial state
@@ -17,6 +21,8 @@ const initialState = {
   inputPwdConf: '',
   inputPseudo: '',
   logged: false,
+  currentUser: '',
+  errorMessage: '',
 };
 
 
@@ -66,6 +72,27 @@ export default (state = initialState, action = {}) => {
         logged: true,
       };
     }
+    case LOGIN_FAILURE: {
+      return {
+        ...state,
+        logged: false,
+        errorMessage: action.errorMessage,
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        isAuthenticating: false,
+        currentUser: action.user,
+        errorMessage: '',
+      };
+    }
+    case LOGOUT: {
+      return {
+        isAuthenticating: false,
+        currentUser: '',
+        errorMessage: '',
+      };
+    }
 
     default:
       return state;
@@ -103,4 +130,17 @@ export const signUpSubmit = () => ({
 
 export const signInSubmit = () => ({
   type: 'SIGNIN_SUBMIT',
+});
+
+export const logout = () => ({
+  type: 'LOGOUT',
+});
+
+export const loginSuccess = user => ({
+  type: 'LOGIN_SUCCESS',
+  user,
+});
+
+export const loginFailure = () => ({
+  type: 'LOGIN_FAILURE',
 });
