@@ -6,6 +6,8 @@ export const PWD_TYPING = 'PWD_TYPING';
 export const PWDCONF_TYPING = 'PWDCONF_TYPING';
 export const PSEUDO_TYPING = 'PSEUDO_TYPING';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
+export const SIGNIN_SUBMIT = 'SIGNIN_SUBMIT';
+
 /*
  * Initial state
  */
@@ -14,6 +16,7 @@ const initialState = {
   inputPwd: '',
   inputPwdConf: '',
   inputPseudo: '',
+  logged: false,
 };
 
 
@@ -57,6 +60,13 @@ export default (state = initialState, action = {}) => {
       };
     }
 
+    case SIGNIN_SUBMIT: {
+      return {
+        ...state,
+        logged: true,
+      };
+    }
+
     default:
       return state;
   }
@@ -89,4 +99,8 @@ export const pseudoTyping = value => ({
 
 export const signUpSubmit = () => ({
   type: 'SIGNUP_SUBMIT',
+});
+
+export const signInSubmit = () => ({
+  type: 'SIGNIN_SUBMIT',
 });

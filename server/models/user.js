@@ -14,7 +14,9 @@ const userSchema = new Schema({
 });
 
 // On SAVE HOOK, encrypt password
-userSchema.pre('save', (next) => {
+/* eslint-disable func-names */
+
+userSchema.pre('save', function (next) {
   // accessing (this) user model
   const user = this;
 
@@ -39,7 +41,7 @@ userSchema.pre('save', (next) => {
 /* Cross-reference password - (REQUEST) 'Password' VS. (STORE) USER.PASSWORD
 1. Create (NEW) [Salt + Hashed Password]: By Encrypting (sign-in) REQUEST 'Password' with Salt
 2. Compare STORED password with NEW REQUEST password */
-userSchema.methods.comparePassword = (candidatePassword, callback) => {
+userSchema.methods.comparePassword = function (candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     // this.password (hashed password as observed in model)
     if (err) {

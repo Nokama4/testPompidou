@@ -11,7 +11,7 @@ import Nav from 'src/components/Nav';
 import Game from 'src/containers/Game';
 import Factions from 'src/containers/Factions';
 import Character from 'src/containers/Character';
-import Login from 'src/components/Login';
+import Login from 'src/containers/Login';
 import Register from 'src/containers/Register';
 
 /*

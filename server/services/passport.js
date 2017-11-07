@@ -17,24 +17,30 @@ const localLogin = new LocalStrategy(localOptions, ((email, password, done) => {
       (+) Correct Match: Call done==> False
       (-) Incorrect Match: Call done==> True
       'done' is supplied by Passport.js   */
+  console.log(email);
   User.findOne({ email }, (err, user) => {
     if (err) {
+      console.log('err1');
       return done(err);
     }
     if (!user) {
-      return done(null, false);
+      console.log('err2');
+      return done(null, false, { message: 'no user' });
     }
-
+    console.log('va comparer');
     // Next: Need to Cross-reference password (see user model first)
     // -  After user model method defined - bring in isMatch
     user.comparePassword(password, (err, isMatch) => {
+      console.log(password);
       // Error: Return early, call done
       if (err) {
+        console.log('err3');
         return done(err);
       }
       // If search process 'successful' but without match (false)
       if (!isMatch) {
-        return done(null, false);
+        console.log('err4');
+        return done(null, false, { message: 'no match' });
       }
 
       // If match found
@@ -63,6 +69,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, ((payload, done) => {
     // if WITH ERROR (no - user object)
     if (err) {
       // 'unsuccessful' search process(err): return error object;
+      console.log('return error object');
       return done(err, false);
       // err (returning error object)
       // false (user object if we did NOT found one)
@@ -70,10 +77,12 @@ const jwtLogin = new JwtStrategy(jwtOptions, ((payload, done) => {
     // if WITHOUT ERROR (yes - user object)
     if (user) {
       // 'successful' search process(null): return (user); no error object to return;
+      console.log('no error object to return');
       done(null, user);
     }
     else {
       // 'successful' search process(null) - but user NOT found (false); no error object to return;
+      console.log('user NOT found');
       done(null, false);
     }
   });
