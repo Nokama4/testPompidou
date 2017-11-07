@@ -49,6 +49,8 @@ const createMiddleware = store => next => (action) => {
           password: state.auth.inputPwd,
         })
         .then((response) => {
+          localStorage.setItem('mytoken', response.data.token);
+          console.log(localStorage);
           console.log(response);
         });
       break;
@@ -64,6 +66,8 @@ const createMiddleware = store => next => (action) => {
           password: state.auth.inputPwd,
         })
         .then((response) => {
+          localStorage.setItem('mytoken', response.data.token);
+          console.log(localStorage);
           console.log(response);
         });
       break;
