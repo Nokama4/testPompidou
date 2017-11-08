@@ -83,7 +83,7 @@ const createMiddleware = store => next => (action) => {
       axios({
         method: 'GET',
         url,
-        headers: { authorization: `jwt ${localStorage.getItem('mytoken')}` },
+        headers: { authorization: localStorage.mytoken },
       })
         .then((response) => {
           console.log(response.data);
