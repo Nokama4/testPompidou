@@ -7,6 +7,7 @@ import React from 'react';
 /*
  * Local import
  */
+import Field from 'src/components/Field';
 
 
 /*
@@ -38,7 +39,7 @@ class Login extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">Email</span>
-            <input
+            <Field
               type="text"
               name="email"
               className="login-input"
@@ -52,7 +53,7 @@ class Login extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">Mot de passe</span>
-            <input
+            <Field
               type="password"
               name="password"
               className="login-input"

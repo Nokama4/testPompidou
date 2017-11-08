@@ -7,6 +7,7 @@ import React from 'react';
 /*
  * Local import
  */
+import Field from 'src/components/Field';
 
 
 /*
@@ -48,7 +49,7 @@ class Register extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">Pseudodyme</span>
-            <input
+            <Field
               type="text"
               name="username"
               className="login-input"
@@ -62,7 +63,7 @@ class Register extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">Mot de passe</span>
-            <input
+            <Field
               type="password"
               name="password"
               className="login-input"
@@ -76,7 +77,7 @@ class Register extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">Confirmation</span>
-            <input
+            <Field
               type="password"
               name="passwordConf"
               className="login-input"
@@ -90,7 +91,7 @@ class Register extends React.Component {
         <div className="login">
           <div className="login-block">
             <span className="login-text">E-mail</span>
-            <input
+            <Field
               type="text"
               name="email"
               className="login-input"
