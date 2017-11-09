@@ -14,26 +14,6 @@ import Field from 'src/containers/Field';
  * Code
  */
 class Register extends React.Component {
-  handleChangeEmail = (evt) => {
-    const { value } = evt.target;
-    this.props.actions.emailTyping(value);
-  }
-
-  handleChangePseudo = (evt) => {
-    const { value } = evt.target;
-    this.props.actions.pseudoTyping(value);
-  }
-
-  handleChangePwd = (evt) => {
-    const { value } = evt.target;
-    this.props.actions.pwdTyping(value);
-  }
-
-  handleChangePwdConf = (evt) => {
-    const { value } = evt.target;
-    this.props.actions.pwdConfTyping(value);
-  }
-
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.actions.signUpSubmit();
@@ -51,28 +31,24 @@ class Register extends React.Component {
           name="username"
           textSpan="Pseudonyme"
           placeholder="Nom de code"
-          onChange={this.handleChangePseudo}
         />
         <Field
           type="password"
           name="password"
           textSpan="Mot de passe"
           placeholder="Mot de passe"
-          onChange={this.handleChangePwd}
         />
         <Field
           type="password"
           name="passwordConf"
           textSpan="Confirmation"
           placeholder="Mot de passe"
-          onChange={this.handleChangePwdConf}
         />
         <Field
           type="text"
           name="email"
           textSpan="E-mail"
           placeholder="E-mail"
-          onChange={this.handleChangeEmail}
         />
         <div className="login">
           <button id="login-button-validate">Valider</button>
