@@ -14,17 +14,6 @@ import Field from 'src/containers/Field';
  * Code
  */
 class Login extends React.Component {
-  handleChangeEmail = (evt) => {
-    const { value } = evt.target;
-    console.log(value);
-    this.props.actions.emailTyping(value);
-  }
-
-  handleChangePassword = (evt) => {
-    const { value } = evt.target;
-    this.props.actions.pwdTyping(value);
-  }
-
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.actions.signInSubmit();
@@ -41,14 +30,12 @@ class Login extends React.Component {
           name="email"
           textSpan="E-mail"
           placeholder="E-mail"
-          onChange={this.handleChangeEmail}
         />
         <Field
           type="password"
           name="password"
           textSpan="Mot de passe"
           placeholder="Mot de passe"
-          onChange={this.handleChangePassword}
         />
         <div className="login">
           <button id="login-button-validate">Valider</button>
