@@ -9,8 +9,16 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     lowercase: true,
+    trim: true,
   },
-  password: String,
+  password: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    trim: true,
+  },
 });
 
 // On SAVE HOOK, encrypt password

@@ -22,8 +22,10 @@ const Desktop = ({ status }) => (
   <div id="desktop">
     <Nav />
     <Route exact path="/" component={Factions} />
-    <Route exact path="/signin" component={Login} />
-    <Route exact path="/signup" component={Register} />
+    <Route path="/signin" component={Login} />
+    <Route path="/signup" component={Register} />
+    <Route path="/logout" />
+
     {status === 'faction' &&
     <Factions />
       }

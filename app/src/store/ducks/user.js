@@ -7,12 +7,12 @@ export const GENDER_CHANGE = 'GENDER_CHANGE';
 export const CHARACTER_SELECT = 'CHARACTER_SELECT';
 export const GAME_BEGIN = 'GAME_BEGIN';
 export const ACTION_SELECT = 'ACTION_SELECT';
-
+export const USER_LOGGED = 'USER_LOGGED';
 /*
  * Initial state
  */
 const initialState = {
-  status: 'faction',
+  status: '',
   inputName: '',
   gender: '',
   name: '',
@@ -71,6 +71,13 @@ export default (state = initialState, action = {}) => {
       };
     }
 
+    case USER_LOGGED: {
+      return {
+        ...state,
+        status: 'faction',
+      };
+    }
+
     default:
       return state;
   }
@@ -106,4 +113,8 @@ export const beginGame = () => ({
 export const selectAction = id => ({
   type: 'ACTION_SELECT',
   id,
+});
+
+export const isAuthenticated = () => ({
+  type: 'USER_LOGGED',
 });

@@ -8,12 +8,13 @@ import jwtDecode from 'jwt-decode';
  * Local import
  */
 import { PAGE_LOAD, receiveScene, FACTIONS_LOAD, receiveFactions } from 'src/store/ducks/scenes';
+import { isAuthenticated } from 'src/store/ducks/user';
 import { SIGNUP_SUBMIT, SIGNIN_SUBMIT, LOGOUT, LOGIN_FAILURE, LOGIN_SUCCESS, loginSuccess, loginFailure, logout } from 'src/store/ducks/auth';
 /*
  * Code
  */
 
-const urlScene = 'http://localhost:3000/datas';
+const urlScene = 'http://localhost:3000/scenes';
 const urlFactions = 'http://localhost:3000/factions';
 const urlSignUp = 'http://localhost:3000/signup';
 const urlSignIn = 'http://127.0.0.1:3000/signin';
@@ -26,7 +27,11 @@ const createMiddleware = store => next => (action) => {
     case PAGE_LOAD: {
       const state = store.getState();
       axios
-        .post(urlScene, { current: state.user.current })
+        .post(
+          urlScene,
+          { current: state.user.current },
+          { headers: { authorization: localStorage.mytoken } },
+        )
         .then(({ data }) => {
           store.dispatch(receiveScene(data));
         });
@@ -34,8 +39,11 @@ const createMiddleware = store => next => (action) => {
     }
 
     case FACTIONS_LOAD: {
+      console.log(localStorage.mytoken);
+      const jwt = localStorage.mytoken;
+      jwt &&
       axios
-        .get(urlFactions)
+        .get(urlFactions, { headers: { authorization: localStorage.mytoken } })
         .then((response) => {
           console.log(response);
           store.dispatch(receiveFactions(response.data));
@@ -47,12 +55,13 @@ const createMiddleware = store => next => (action) => {
       const state = store.getState();
       axios
         .post(urlSignUp, {
-          email: state.auth.inputEmail,
+          username: state.auth.inputPseudo,
           password: state.auth.inputPwd,
+          passwordConf: state.auth.inputPwdConf,
+          email: state.auth.inputEmail,
         })
         .then((response) => {
           localStorage.setItem('mytoken', response.data.token);
-          console.log(localStorage);
           console.log(response);
         });
       break;
@@ -60,8 +69,6 @@ const createMiddleware = store => next => (action) => {
 
     case SIGNIN_SUBMIT: {
       const state = store.getState();
-      console.log(state.auth.inputEmail);
-      console.log(state.auth.inputPwd);
       axios
         .post(urlSignIn, {
           email: state.auth.inputEmail,
@@ -87,6 +94,7 @@ const createMiddleware = store => next => (action) => {
       })
         .then((response) => {
           console.log(response.data);
+          store.dispatch(isAuthenticated());
         })
         .catch((res) => {
           console.log(res);

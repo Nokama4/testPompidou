@@ -18,18 +18,23 @@ const Nav = () => (
     <NavLink
       className="nav-item"
       activeClassName="nav-item--active"
-      exact
-      to="signup"
+      to="/signup"
     >
     SignUp
     </NavLink>
     <NavLink
       className="nav-item"
       activeClassName="nav-item--active"
-      exact
-      to="signin"
+      to="/signin"
     >
     SignIn
+    </NavLink>
+    <NavLink
+      className="nav-item"
+      activeClassName="nav-item--active"
+      to="/logout"
+    >
+    Logout
     </NavLink>
   </div>
 );
