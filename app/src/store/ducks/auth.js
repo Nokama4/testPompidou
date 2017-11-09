@@ -1,10 +1,13 @@
 /*
  * Types
  */
+// À virer {
 export const EMAIL_TYPING = 'EMAIL_TYPING';
 export const PWD_TYPING = 'PWD_TYPING';
 export const PWDCONF_TYPING = 'PWDCONF_TYPING';
 export const PSEUDO_TYPING = 'PSEUDO_TYPING';
+// }
+export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -16,10 +19,12 @@ export const SIGNIN_SUBMIT = 'SIGNIN_SUBMIT';
  * Initial state
  */
 const initialState = {
+  // À Virer {
   inputEmail: '',
   inputPwd: '',
   inputPwdConf: '',
   inputPseudo: '',
+  // }
   logged: false,
   currentUser: '',
   errorMessage: '',
@@ -32,6 +37,7 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     // case 'DO_SOMETHING':
+    // À Virer {
     case EMAIL_TYPING: {
       return {
         ...state,
@@ -57,6 +63,14 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         inputPseudo: action.value,
+      };
+    }
+    // }
+
+    case INPUT_CHANGE: {
+      return {
+        ...state,
+        [action.name]: action.value,
       };
     }
 
@@ -107,6 +121,7 @@ export default (state = initialState, action = {}) => {
  * Action creators
  */
 
+// À Virer {
 export const emailTyping = value => ({
   type: 'EMAIL_TYPING',
   value,
@@ -126,24 +141,31 @@ export const pseudoTyping = value => ({
   type: 'PSEUDO_TYPING',
   value,
 });
+// }
+
+export const changeInput = ({ name, value }) => ({
+  type: INPUT_CHANGE,
+  value,
+  name,
+});
 
 export const signUpSubmit = () => ({
-  type: 'SIGNUP_SUBMIT',
+  type: SIGNUP_SUBMIT,
 });
 
 export const signInSubmit = () => ({
-  type: 'SIGNIN_SUBMIT',
+  type: SIGNIN_SUBMIT,
 });
 
 export const logout = () => ({
-  type: 'LOGOUT',
+  type: LOGOUT,
 });
 
 export const loginSuccess = user => ({
-  type: 'LOGIN_SUCCESS',
+  type: LOGIN_SUCCESS,
   user,
 });
 
 export const loginFailure = () => ({
-  type: 'LOGIN_FAILURE',
+  type: LOGIN_FAILURE,
 });

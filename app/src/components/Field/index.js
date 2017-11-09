@@ -21,11 +21,12 @@ class Field extends React.PureComponent {
    * @type {Object}
    */
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string,
     type: PropTypes.oneOf(['text', 'password', 'email', 'tel']),
+    name: PropTypes.string.isRequired,
+    textSpan: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -38,23 +39,38 @@ class Field extends React.PureComponent {
    * Handlers
    * @type {Functions}
    */
+  handleChange = (evt) => {
+    // Modifier le state de <App />
+    const { value } = evt.target;
+    this.props.onChange(value);
+
+    // On vérifie l'email
+    // if (this.props.type === 'email') {
+    //   const error = !validateEmail(value);
+    //   this.setState({ error });
+    // }
+  }
 
 
   /*
    * Render
    */
   render() {
-    const { name, placeholder, value, type } = this.props;
+    const { type, name, textSpan, placeholder, value } = this.props;
     return (
-      <input
-        type={type}
-        name={name}
-        className="login-input"
-        placeholder={placeholder}
-        required=""
-        value={value}
-        onChange={this.props.onChange}
-      />
+      <div className="login">
+        <div className="login-block">
+          <span className="login-text">{textSpan}</span>
+          <input
+            type={type}
+            name={name}
+            className="login-input"
+            placeholder={placeholder}
+            value={value}
+            onChange={this.handleChange}
+          />
+        </div>
+      </div>
     );
   }
 }
