@@ -16,7 +16,7 @@ import { changeInput } from 'src/store/ducks/auth';
  */
 // State
 const mapStateToProps = (state, ownProps) => ({
-  value: state[ownProps.name],
+  value: state.auth[ownProps.name],
 });
 
 // Actions

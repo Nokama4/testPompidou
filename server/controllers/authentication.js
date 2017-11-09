@@ -23,7 +23,6 @@ exports.signin = (req, res, next) => { /*
 exports.signup = (req, res, next) => {
   const { email } = req.body;
   const { password } = req.body;
-  const { username } = req.body;
 
   if (!email || !password) {
     return res.status(422).send({ error: 'Please provide both an email and password.' });
@@ -47,7 +46,6 @@ exports.signup = (req, res, next) => {
     const user = new User({
       email,
       password,
-      username,
     });
 
     // *Now SAVING User to database

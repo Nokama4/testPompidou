@@ -55,10 +55,10 @@ const createMiddleware = store => next => (action) => {
       const state = store.getState();
       axios
         .post(urlSignUp, {
-          username: state.auth.inputPseudo,
-          password: state.auth.inputPwd,
-          passwordConf: state.auth.inputPwdConf,
-          email: state.auth.inputEmail,
+          username: state.auth.username,
+          password: state.auth.password,
+          passwordConf: state.auth.passworConf,
+          email: state.auth.email,
         })
         .then((response) => {
           localStorage.setItem('mytoken', response.data.token);
@@ -71,8 +71,8 @@ const createMiddleware = store => next => (action) => {
       const state = store.getState();
       axios
         .post(urlSignIn, {
-          email: state.auth.inputEmail,
-          password: state.auth.inputPwd,
+          email: state.auth.email,
+          password: state.auth.password,
         })
         .then((response) => {
           localStorage.setItem('mytoken', response.data.token);
