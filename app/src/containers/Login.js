@@ -9,22 +9,21 @@ import { bindActionCreators } from 'redux';
  * Local import
  */
 import Login from 'src/components/Login';
-import { emailTyping, pwdTyping, signInSubmit } from 'src/store/ducks/auth';
+import data from 'src/data';
+import { signInSubmit } from 'src/store/ducks/auth';
+
 
 /*
  * Code
  */
 // State
-const mapStateToProps = state => ({
-  email: state.auth.inputEmail,
-  password: state.auth.inputPwd,
+const mapStateToProps = () => ({
+  data: data.loginFields,
 });
 
 // Actions
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    emailTyping,
-    pwdTyping,
     signInSubmit,
   }, dispatch),
 });

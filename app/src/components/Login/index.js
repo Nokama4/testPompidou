@@ -2,6 +2,7 @@
  * Npm import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 /*
@@ -14,29 +15,28 @@ import Field from 'src/containers/Field';
  * Code
  */
 class Login extends React.Component {
+  /**
+   * PropTypes
+   * @type {Object}
+   */
+  static propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    actions: PropTypes.objectOf(PropTypes.func.isRequired).isRequired,
+  }
+
+
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.actions.signInSubmit();
   }
 
   render() {
-    const { email, password } = this.props;
+    const { data } = this.props;
     return (
       <form id="login" onSubmit={this.handleSubmit}>
         <h1 id="login-title">Bienvenue visiteur.</h1>
         <p id="login-text">Veuillez vous connecter afin de poursuivre l'aventure</p>
-        <Field
-          type="text"
-          name="email"
-          textSpan="E-mail"
-          placeholder="E-mail"
-        />
-        <Field
-          type="password"
-          name="password"
-          textSpan="Mot de passe"
-          placeholder="Mot de passe"
-        />
+        {data.map(field => <Field key={field.name} {...field} />)}
         <div className="login">
           <button id="login-button-validate">Valider</button>
         </div>

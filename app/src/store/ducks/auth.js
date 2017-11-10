@@ -1,12 +1,6 @@
 /*
  * Types
  */
-// À virer {
-export const EMAIL_TYPING = 'EMAIL_TYPING';
-export const PWD_TYPING = 'PWD_TYPING';
-export const PWDCONF_TYPING = 'PWDCONF_TYPING';
-export const PSEUDO_TYPING = 'PSEUDO_TYPING';
-// }
 export const INPUT_CHANGE = 'INPUT_CHANGE';
 export const SIGNUP_SUBMIT = 'SIGNUP_SUBMIT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -19,12 +13,6 @@ export const SIGNIN_SUBMIT = 'SIGNIN_SUBMIT';
  * Initial state
  */
 const initialState = {
-  // À Virer {
-  inputEmail: '',
-  inputPwd: '',
-  inputPwdConf: '',
-  inputPseudo: '',
-  // }
   logged: false,
   currentUser: '',
   errorMessage: '',
@@ -37,36 +25,6 @@ const initialState = {
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     // case 'DO_SOMETHING':
-    // À Virer {
-    case EMAIL_TYPING: {
-      return {
-        ...state,
-        inputEmail: action.value,
-      };
-    }
-
-    case PWD_TYPING: {
-      return {
-        ...state,
-        inputPwd: action.value,
-      };
-    }
-
-    case PWDCONF_TYPING: {
-      return {
-        ...state,
-        inputPwdConf: action.value,
-      };
-    }
-
-    case PSEUDO_TYPING: {
-      return {
-        ...state,
-        inputPseudo: action.value,
-      };
-    }
-    // }
-
     case INPUT_CHANGE: {
       return {
         ...state,
@@ -121,27 +79,6 @@ export default (state = initialState, action = {}) => {
  * Action creators
  */
 
-// À Virer {
-export const emailTyping = value => ({
-  type: 'EMAIL_TYPING',
-  value,
-});
-
-export const pwdTyping = value => ({
-  type: 'PWD_TYPING',
-  value,
-});
-
-export const pwdConfTyping = value => ({
-  type: 'PWDCONF_TYPING',
-  value,
-});
-
-export const pseudoTyping = value => ({
-  type: 'PSEUDO_TYPING',
-  value,
-});
-// }
 
 export const changeInput = ({ name, value }) => ({
   type: INPUT_CHANGE,
