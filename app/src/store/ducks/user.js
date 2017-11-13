@@ -8,6 +8,7 @@ export const CHARACTER_SELECT = 'CHARACTER_SELECT';
 export const GAME_BEGIN = 'GAME_BEGIN';
 export const ACTION_SELECT = 'ACTION_SELECT';
 export const USER_LOGGED = 'USER_LOGGED';
+export const GAMEID_SAVE = 'GAMEID_SAVE';
 /*
  * Initial state
  */
@@ -78,6 +79,13 @@ export default (state = initialState, action = {}) => {
       };
     }
 
+    case GAMEID_SAVE: {
+      return {
+        ...state,
+        game: action.id,
+      };
+    }
+
     default:
       return state;
   }
@@ -117,4 +125,9 @@ export const selectAction = id => ({
 
 export const isAuthenticated = () => ({
   type: 'USER_LOGGED',
+});
+
+export const saveGameId = id => ({
+  type: 'GAMEID_SAVE',
+  id,
 });

@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Game = require('../models/game');
+const mongoose = require('mongoose');
 
 
 exports.saveIntro = (req, res, next) => {
@@ -21,11 +22,21 @@ exports.saveIntro = (req, res, next) => {
   });
 
     // *Now SAVING Game to database
-  game.save((err) => {
+  game.save((err, popo) => {
     if (err) {
       return next(err);
     }
-    // Response--> Request: Confirm User Created
-    res.json({ game: 'sauvegardé' });
+    // Response--> Request: Send the current Game id
+    res.json({ game: popo.id });
+  });
+};
+
+exports.saveNewAction = (req, res, next) => {
+  console.log(req.body.game);
+  Game.findOneAndUpdate({ _id: req.body.game }, { currentScene: req.body.currentScene }, { new: true }, (err, doc) => {
+    if (err) {
+      return res.send(500, { error: err });
+    }
+    return res.send(doc);
   });
 };

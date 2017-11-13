@@ -2,12 +2,11 @@ const mongoose = require('mongoose');
 // Schema is used to tell Mongoose what fields will exist
 const { Schema } = mongoose;
 
-// Defining ('User') MODEL
+// Defining ('Game') MODEL
 const gameSchema = new Schema({
   playerID: {
     type: Schema.ObjectId,
     ref: 'User',
-    required: true,
   },
   factionID: Number,
   characterName: String,
@@ -16,8 +15,8 @@ const gameSchema = new Schema({
 });
 
 
-// Creating ('User') MODEL CLASS - Is a "class" of users
+// Creating ('Game') MODEL CLASS - Is a "class" of users
 const GameModelClass = mongoose.model('game', gameSchema);
 
-// Exporting ('User') MODEL
+// Exporting ('Game') MODEL
 module.exports = GameModelClass;

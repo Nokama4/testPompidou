@@ -40,7 +40,7 @@ module.exports = (app) => {
     res.json(factions);
   });
 
-  app.post('/begin', requireAuth, Game.saveIntro, (req, res) => {
-    res.send({ User: 'intro enregistrée' });
-  });
+  app.post('/begin', requireAuth, Game.saveIntro);
+
+  app.post('/save', requireAuth, Game.saveNewAction);
 };
