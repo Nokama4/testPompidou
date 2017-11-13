@@ -8,8 +8,8 @@ import jwtDecode from 'jwt-decode';
  * Local import
  */
 import { PAGE_LOAD, receiveScene, FACTIONS_LOAD, receiveFactions } from 'src/store/ducks/scenes';
-import { isAuthenticated } from 'src/store/ducks/user';
-import { SIGNUP_SUBMIT, SIGNIN_SUBMIT, LOGOUT, LOGIN_FAILURE, LOGIN_SUCCESS, loginSuccess, loginFailure, logout } from 'src/store/ducks/auth';
+import { isAuthenticated, GAME_BEGIN } from 'src/store/ducks/user';
+import { SIGNUP_SUBMIT, SIGNIN_SUBMIT, LOGOUT, LOGIN_SUCCESS, loginSuccess } from 'src/store/ducks/auth';
 /*
  * Code
  */
@@ -19,7 +19,7 @@ const urlFactions = 'http://localhost:3000/factions';
 const urlSignUp = 'http://localhost:3000/signup';
 const urlSignIn = 'http://127.0.0.1:3000/signin';
 const url = 'http://localhost:3000/';
-
+const urlBegin = 'http://localhost:3000/begin';
 
 const createMiddleware = store => next => (action) => {
   // Je vérifie ce qui m'intéresse
@@ -60,7 +60,7 @@ const createMiddleware = store => next => (action) => {
           passwordConf: state.auth.passworConf,
           email: state.auth.email,
         })
-        .then((response) => {
+        .then((reurlBeginsponse) => {
           localStorage.setItem('mytoken', response.data.token);
           console.log(response);
         });
@@ -95,6 +95,34 @@ const createMiddleware = store => next => (action) => {
         .then((response) => {
           console.log(response.data);
           store.dispatch(isAuthenticated());
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+      break;
+    }
+    case LOGOUT: {
+      console.log('coucou');
+      localStorage.removeItem('mytoken');
+      break;
+    }
+    // Go to the next
+      next(action);
+
+    case GAME_BEGIN: {
+      const state = store.getState();
+      axios
+        .post(
+          urlBegin, {
+            factionID: state.user.factionID,
+            characterName: state.user.name,
+            currentScene: state.user.current,
+            gender: state.user.gender,
+          },
+          { headers: { authorization: localStorage.mytoken } },
+        )
+        .then((response) => {
+          console.log(response);
         })
         .catch((res) => {
           console.log(res);

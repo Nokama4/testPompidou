@@ -2,22 +2,20 @@
  * Npm import
  */
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 
 /*
  * Local import
  */
-import Desktop from 'src/components/Desktop';
-
+import Nav from 'src/components/Nav';
+import { withRouter } from 'react-router-dom';
 
 /*
  * Code
  */
 // State
-const mapStateToProps = state => ({
-  status: state.user.status,
-});
+const mapStateToProps = null;
 
 // Actions
 const mapDispatchToProps = {};
@@ -27,10 +25,10 @@ const mapDispatchToProps = {};
  * Component
  */
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
-const DesktopContainer = withRouter(createContainer(Desktop));
+const NavContainer = withRouter(createContainer(Nav));
 
 
 /*
  * Export default
  */
-export default DesktopContainer;
+export default NavContainer;

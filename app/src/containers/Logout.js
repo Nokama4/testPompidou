@@ -3,12 +3,14 @@
  */
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
 
 /*
  * Local import
  */
-import Desktop from 'src/components/Desktop';
+import Logout from 'src/components/Logout';
+import { logout } from 'src/store/ducks/auth';
 
 
 /*
@@ -20,17 +22,21 @@ const mapStateToProps = state => ({
 });
 
 // Actions
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators({
+    logout,
+  }, dispatch),
+});
 
 
 /*
  * Component
  */
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
-const DesktopContainer = withRouter(createContainer(Desktop));
+const LogoutContainer = withRouter(createContainer(Logout));
 
 
 /*
  * Export default
  */
-export default DesktopContainer;
+export default LogoutContainer;

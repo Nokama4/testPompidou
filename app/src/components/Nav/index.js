@@ -2,7 +2,7 @@
  * Npm import
  */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 
 /*
@@ -16,6 +16,15 @@ import { NavLink } from 'react-router-dom';
 const Nav = () => (
   <div id="nav">
     <NavLink
+      exact
+      className="nav-item"
+      activeClassName="nav-item--active"
+      to="/"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      exact
       className="nav-item"
       activeClassName="nav-item--active"
       to="/signup"
@@ -23,6 +32,7 @@ const Nav = () => (
     SignUp
     </NavLink>
     <NavLink
+      exact
       className="nav-item"
       activeClassName="nav-item--active"
       to="/signin"
@@ -30,6 +40,7 @@ const Nav = () => (
     SignIn
     </NavLink>
     <NavLink
+      exact
       className="nav-item"
       activeClassName="nav-item--active"
       to="/logout"
@@ -43,4 +54,4 @@ const Nav = () => (
 /*
  * Export default
  */
-export default Nav;
+export default withRouter(Nav);
